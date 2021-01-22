@@ -2,13 +2,9 @@
 using NoviInterviewMiniProject.Models;
 using NoviInterviewMiniProject.Models.Entities;
 using NoviInterviewMiniProject.Services;
-using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web;
 
 namespace NoviInterviewMiniProject.Repositories
 {
@@ -32,7 +28,12 @@ namespace NoviInterviewMiniProject.Repositories
         {
             _globalSettings = globalSettings;
         }
-
+        
+        /// <summary>
+        /// Get member by ID.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public override Member GetByID(string id)
         {
             string result = GetRequest("/Members/" + id);
@@ -46,6 +47,10 @@ namespace NoviInterviewMiniProject.Repositories
             return null;
         }
 
+        /// <summary>
+        /// Get active members
+        /// </summary>
+        /// <returns></returns>
         public override IEnumerable<Member> GetAll()
         {
             string result = GetRequest("/Members");

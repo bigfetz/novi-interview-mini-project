@@ -1,9 +1,5 @@
 ﻿using NoviInterviewMiniProject.Models.Entities;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace NoviInterviewMiniProject.Models.ViewModels
 {
@@ -26,7 +22,7 @@ namespace NoviInterviewMiniProject.Models.ViewModels
         [Display(Name = "Billing Address")]
         public string BillingAddress { get; set; }
 
-        [Display(Name= "Shipping Address")]
+        [Display(Name = "Shipping Address")]
         public string ShippingAddress { get; set; }
 
         public MemberDetailsViewModel(Member member)
@@ -39,7 +35,7 @@ namespace NoviInterviewMiniProject.Models.ViewModels
             Website = member.Website;
             Image = member.Image;
 
-            if(member.BillingAddress != null)
+            if (member.BillingAddress != null)
             {
                 BillingAddress = member.BillingAddress.Address1
                     + (!string.IsNullOrEmpty(member.BillingAddress.Address2) ? " " + member.BillingAddress.Address2 : "")

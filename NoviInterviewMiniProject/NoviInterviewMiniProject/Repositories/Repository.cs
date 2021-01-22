@@ -1,13 +1,8 @@
-﻿using Newtonsoft.Json;
-using NoviInterviewMiniProject.Models;
-using NoviInterviewMiniProject.Services;
+﻿using NoviInterviewMiniProject.Services;
 using RestSharp;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Net.Http;
-using System.Web;
 
 namespace NoviInterviewMiniProject.Repositories
 {
@@ -16,6 +11,11 @@ namespace NoviInterviewMiniProject.Repositories
 
         public IGlobalSettings _globalSettings;
 
+        /// <summary>
+        /// Generic reset get request function
+        /// </summary>
+        /// <param name="endpoint"></param>
+        /// <returns></returns>
         public string GetRequest(string endpoint)
         {
             RestClient client = new RestClient(_globalSettings.ApiUrl + endpoint);
@@ -23,7 +23,7 @@ namespace NoviInterviewMiniProject.Repositories
             var request = new RestRequest(Method.GET);
             request.AddHeader("Authorization", "Basic " + _globalSettings.ApiKey);
             IRestResponse response = client.Execute(request);
-            if(response.StatusCode == HttpStatusCode.OK)
+            if (response.StatusCode == HttpStatusCode.OK)
             {
                 return response.Content;
             }

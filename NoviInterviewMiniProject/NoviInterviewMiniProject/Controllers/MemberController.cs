@@ -1,9 +1,6 @@
 ﻿using NoviInterviewMiniProject.Models.ViewModels;
 using NoviInterviewMiniProject.Repositories;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace NoviInterviewMiniProject.Controllers
@@ -20,13 +17,16 @@ namespace NoviInterviewMiniProject.Controllers
         [HttpGet]
         public ActionResult Index(string search = "", string sortOn = "NAME", bool isAsc = false)
         {
+            // get all items and map to item models. These filter out in active items in repo
             var items = _memberRepository.GetAll().Select(x => new MemberItemViewModel(x));
 
+            // if no search then ignore this filter
             if (!string.IsNullOrEmpty(search))
             {
                 items = items.Where(x => x.Name.Contains(search));
             }
-            
+
+            // perform sorting switch 
             switch (sortOn.ToUpper())
             {
                 case "NAME":
@@ -49,6 +49,7 @@ namespace NoviInterviewMiniProject.Controllers
                     break;
             }
 
+            // map model
             var model = new MembersIndexViewModel
             {
                 TableModel = new Models.TableModel
@@ -65,6 +66,7 @@ namespace NoviInterviewMiniProject.Controllers
         [HttpGet]
         public ActionResult Details(string id)
         {
+            // get member by id and map it to view model.
             var member = _memberRepository.GetByID(id);
             return PartialView(new MemberDetailsViewModel(member));
         }

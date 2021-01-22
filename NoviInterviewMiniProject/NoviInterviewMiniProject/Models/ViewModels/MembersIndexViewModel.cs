@@ -1,15 +1,11 @@
 ﻿using NoviInterviewMiniProject.Models.Entities;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace NoviInterviewMiniProject.Models.ViewModels
 {
     public class MembersIndexViewModel
     {
-        public TableModel TableModel { get; set; } 
+        public TableModel TableModel { get; set; }
 
         public IEnumerable<MemberItemViewModel> MemberRows { get; set; }
     }

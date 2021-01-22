@@ -15,19 +15,23 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace NoviInterviewMiniProject.DependencyResolution {
+namespace NoviInterviewMiniProject.DependencyResolution
+{
     using StructureMap.Configuration.DSL;
     using StructureMap.Graph;
-	
-    public class DefaultRegistry : Registry {
+
+    public class DefaultRegistry : Registry
+    {
         #region Constructors and Destructors
 
-        public DefaultRegistry() {
+        public DefaultRegistry()
+        {
             Scan(
-                scan => {
+                scan =>
+                {
                     scan.TheCallingAssembly();
                     scan.WithDefaultConventions();
-					scan.With(new ControllerConvention());
+                    scan.With(new ControllerConvention());
                 });
             //For<IExample>().Use<Example>();
         }

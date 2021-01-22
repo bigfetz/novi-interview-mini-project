@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace NoviInterviewMiniProject.Models.Entities
+﻿namespace NoviInterviewMiniProject.Models.Entities
 {
     public class MemberType
     {
