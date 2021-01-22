@@ -1,0 +1,80 @@
+﻿@using NoviInterviewMiniProject.Helpers
+@model NoviInterviewMiniProject.Models.ViewModels.MembersIndexViewModel
+@{
+    ViewBag.Title = "Members";
+}
+
+<h2>Members</h2>
+
+<div class="row">
+    <div class="col-md-3 col-md-offset-8">
+        @Html.TextBoxFor(x => x.TableModel.Search, new { @class = "form-control", placeholder = "Search Members"})
+    </div>
+    <div class="col-md-1">
+        <button id="search-members-button" class="btn btn-default" type="button">Search</button>
+    </div>
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>@Html.Header("Name", "Member", Model.TableModel)</th>
+            <th>@Html.Header("Member Type","Member", Model.TableModel)</th>
+            <th>@Html.Header("Email","Member", Model.TableModel)</th>            
+            <th>@Html.Header("Phone","Member", Model.TableModel)</th>   
+            <th>@Html.Header("Mobile","Member", Model.TableModel)</th>            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if(Model.MemberRows != null && Model.MemberRows.Any())
+        {
+            foreach(var item in Model.MemberRows)
+            {
+                @Html.Partial("MemberRow", item)
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6" class="no-data-found-row">No Members Found</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div id="member-details-modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Member Details</h4>
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+@section scripts {
+<script>
+    $(document).ready(function () {
+        $(".open-member-details").click(function () {
+            var id = $(this).attr("data-id");
+            $.get("/Member/Details", { id }, function (html) {
+                $("#member-details-modal .modal-body").empty().append(html);
+                $("#member-details-modal").modal('show')
+            })
+        });
+
+        $("#search-members-button").click(function () {
+            document.location.href = "/Member/Index?sorton=@Model.TableModel.SortOn&isAsc=@Model.TableModel.IsAsc&search=" + $("#TableModel_Search").val();
+        });
+    })
+</script>
+}
+
+
+

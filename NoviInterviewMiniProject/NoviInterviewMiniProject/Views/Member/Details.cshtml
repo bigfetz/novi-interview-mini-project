@@ -1,0 +1,34 @@
+﻿@model NoviInterviewMiniProject.Models.ViewModels.MemberDetailsViewModel
+
+<div class="row">
+    <div class="col-md-4">
+        <img class="thumbnail profile-pic" src="@Model.Image" />
+    </div>
+    <div class="col-md-8">
+        <h3>@Model.Name <small>@Model.MemberType</small></h3>
+        <div class="form-group">
+            @Html.LabelFor(x => x.Email)
+            @Html.DisplayFor(x => x.Email)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x => x.Phone)
+            @Html.DisplayFor(x => x.Phone)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x => x.Mobile)
+            @Html.DisplayFor(x => x.Mobile)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x => x.Website)
+            @Html.DisplayFor(x => x.Website)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x => x.BillingAddress)
+            @Html.DisplayFor(x => x.BillingAddress)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x => x.ShippingAddress)
+            @Html.DisplayFor(x => x.ShippingAddress)
+        </div>
+    </div>
+</div>
